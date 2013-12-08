@@ -33,6 +33,25 @@ public class I18nConfiguration {
 
 }
 ```
+# Maven
+You find this package in my maven repository: http://mvn.malkusch.de
+```xml
+<repositories>
+    <repository>
+        <id>malkusch.de</id>
+        <url>http://mvn.malkusch.de/</url>
+    </repository>
+</repositories>
+```
+
+Add the following dependency to your pom.xml
+```xml
+<dependency>
+    <groupId>de.malkusch</groupId>
+    <artifactId>localized</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
 
 # Disclaimer
 I'm currently using this i18n method in a project which is under development. There is no practical knowledge about stability, scalabilty or performance. Plus I don't have isolated test cases. Use it at your own risk! 
