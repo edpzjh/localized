@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.hibernate.Session;
 
+import de.malkusch.localized.exception.UnresolvedLocaleException;
 import de.malkusch.localized.spi.AbstractEventListener;
 
 /**
@@ -27,7 +28,8 @@ public abstract class LocalizedConfiguration {
 	
 	/**
 	 * Resolves the locale for the current {@link Session}.
+	 * @throws UnresolvedLocaleException 
 	 */
-	abstract public Locale resolveLocale(Session session);
+	abstract public Locale resolveLocale(Session session) throws UnresolvedLocaleException;
 	
 }
