@@ -7,7 +7,6 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
 import de.malkusch.localized.test.model.Book;
 
@@ -59,10 +58,11 @@ public class SessionRule implements MethodRule {
 		Configuration configuration = new Configuration();
 		configuration.configure();
 		configuration.addAnnotatedClass(Book.class);
-		configuration.addAnnotatedClass(LocalizedProperty.class); // TODO This
-																	// should
-																	// not be
-																	// necessary
+		// configuration.addAnnotatedClass(LocalizedProperty.class);
+		
+		// compile once to get LocalizedProperty registered.
+		configuration.buildSessionFactory();
+		
 		return configuration.buildSessionFactory();
 	}
 

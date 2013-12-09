@@ -1,5 +1,8 @@
 package de.malkusch.localized.spi;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.beanvalidation.DuplicationStrategyImpl;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
@@ -18,6 +21,8 @@ import de.malkusch.localized.LocalizedProperty;
  * @see /META-INF/services/org.hibernate.integrator.spi.Integrator
  */
 public class ListenerIntegrator implements Integrator {
+	
+	private static Set<Configuration> configurations = new HashSet<>();
 
 	@Override
 	public void integrate(Configuration configuration,
@@ -27,7 +32,7 @@ public class ListenerIntegrator implements Integrator {
 		/**
 		 * I had hard times to figure out how to add this entity automatically
 		 * to the current persistence unit. As Configuration is considered to
-		 * be removed this might break in future. So these are the two other
+		 * be removed this might break in future. So these are the three other
 		 * ways which put the entity into the persistence unit:
 		 * 
 		 * 1. If you have no persistence.xml and configure the EntityManagerFactory with
@@ -36,8 +41,14 @@ public class ListenerIntegrator implements Integrator {
 		 * 
 		 * 2. If you use persistence.xml add <mapping-file>META-INF/localized.xml</mapping-file>
 		 * to your persistence-unit.
+		 * 
+		 * 3. If you configure it programmaticaly (e.g. in a test), use Configuration.addAnnotatedClass()
 		 */
-		configuration.addAnnotatedClass(LocalizedProperty.class);
+		if (! configurations.contains(configuration)) {
+			configurations.add(configuration);
+			configuration.addAnnotatedClass(LocalizedProperty.class);
+			
+		}
 		
 		final EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
 		eventListenerRegistry.addDuplicationStrategy(DuplicationStrategyImpl.INSTANCE);
