@@ -1,5 +1,7 @@
 package de.malkusch.localized;
 
+import java.util.ServiceLoader;
+
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.beanvalidation.DuplicationStrategyImpl;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
@@ -11,14 +13,17 @@ import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.metamodel.source.MetadataImplementor;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
+import de.malkusch.localized.event.DeleteEventListener;
+import de.malkusch.localized.event.ReadEventListener;
+import de.malkusch.localized.event.WriteEventListener;
 import de.malkusch.localized.localeResolver.DefaultLocaleResolver;
 import de.malkusch.localized.localeResolver.LocaleResolver;
-import de.malkusch.localized.spi.DeleteEventListener;
-import de.malkusch.localized.spi.ReadEventListener;
-import de.malkusch.localized.spi.WriteEventListener;
 
 /**
- * Automatic registration of the event listeners.
+ * Automatic integration into Hibernate.
+ * 
+ * This is the entry point into Hibernate. Hibernate discovers this
+ * service with {@link ServiceLoader}.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  * @see /META-INF/services/org.hibernate.integrator.spi.Integrator

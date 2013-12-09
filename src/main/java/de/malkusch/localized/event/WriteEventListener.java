@@ -1,4 +1,4 @@
-package de.malkusch.localized.spi;
+package de.malkusch.localized.event;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
