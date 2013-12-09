@@ -18,7 +18,7 @@ import de.malkusch.localized.dao.LocalizedSessionDAO;
 public class LocalizedUtil {
 	
 	/**
-	 * Returns the set of translations for a given entity.
+	 * Returns the locales of an entity.
 	 * 
 	 * Even if the translation consists only of NULL values it is
 	 * considered a translation.
@@ -31,7 +31,7 @@ public class LocalizedUtil {
 	}
 	
 	/**
-	 * Deletes a translation.
+	 * Deletes a locale from an entity.
 	 */
 	static public void deleteLocale(Session session, Object entity, Locale locale) {
 		LocalizedSessionDAO dao = new LocalizedSessionDAO(session);
