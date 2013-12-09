@@ -57,19 +57,12 @@ public class SessionRule implements MethodRule {
 	@SuppressWarnings("deprecation")
 	private SessionFactory createSessionFactory() {
 		Configuration configuration = new Configuration();
+		configuration.configure();
 		configuration.addAnnotatedClass(Book.class);
 		configuration.addAnnotatedClass(LocalizedProperty.class); // TODO This
 																	// should
 																	// not be
 																	// necessary
-
-		configuration.setProperty("hibernate.dialect",
-				"org.hibernate.dialect.H2Dialect");
-		configuration.setProperty("hibernate.connection.driver_class",
-				"org.h2.Driver");
-		configuration.setProperty("hibernate.connection.url", "jdbc:h2:mem");
-		configuration.setProperty("hibernate.hbm2ddl.auto", "create");
-
 		return configuration.buildSessionFactory();
 	}
 
