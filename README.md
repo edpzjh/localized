@@ -10,7 +10,7 @@ properties:
 class Book {
 
     @Id
-    private String isbn;
+    private int id;
 
     private Author author;
 
@@ -66,6 +66,12 @@ entity. Hibernate's event system provides the infrastructure for replacing and
 storing transparently the `@Localized` fields. You notice that this concept
 increases the Session communication. Don't use `@Localized` when performance
 is a concern.
+
+# Limitations
+I18n happens around Hibernate's `POST_LOAD`, `POST_UPDATE`, `POST_INSERT` and `POST_DELETE`
+events. In between happens nothing. I.e. you have to fix the locale at Session begin
+(before the first `POST_LOAD` event on a localized entity). If you change the locale during
+a session you have to synchronize the entities with `Session.flush()` and `Session.refresh(Object)`.
 
 # Disclaimer
 I'm currently using this i18n method in a project which is under development.
