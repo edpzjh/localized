@@ -29,15 +29,15 @@ That's the job of a `LocaleResolver` implementation. Implement or choose one
 from the package `de.malkusch.localized.localeResolver`. There are several
 ways of registering the LocaleResolver:
 
-*	Specify the fully qualified class name in the hibernate property 
-	*hibernate.listeners.localized.locale_resolver*:
-	```xml
-	<property name="hibernate.listeners.localized.locale_resolver">de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver</property>
-	``` 
-*	Register it programmatically:
-	```java
-	LocalizedIntegrator.setLocaleResolver(new ThreadLocalLocaleResolver());
-	```
+Specify the fully qualified class name in the hibernate property 
+*hibernate.listeners.localized.locale_resolver*:
+```xml
+<property name="hibernate.listeners.localized.locale_resolver">de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver</property>
+``` 
+Register it programmatically:
+```java
+LocalizedIntegrator.setLocaleResolver(new ThreadLocalLocaleResolver());
+```
 
 # Maven
 You find this package in my maven repository: http://mvn.malkusch.de
