@@ -23,7 +23,7 @@ import de.malkusch.localized.exception.LocalizedException;
  * This class dispatches the event to the {@literal @Localized} fields of the
  * event's entity.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 abstract public class AbstractEventListener {
 	

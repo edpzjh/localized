@@ -13,7 +13,7 @@ import de.malkusch.localized.exception.LocalizedException;
 /**
  * Replaces the entity's {@literal @Localized} fields after loading.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class ReadEventListener extends AbstractEventListener implements PostLoadEventListener {
 

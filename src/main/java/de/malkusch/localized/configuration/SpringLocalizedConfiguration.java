@@ -11,7 +11,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
  * To enable Spring support, you simply have to put this
  * bean into your Spring context.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class SpringLocalizedConfiguration extends LocalizedConfiguration {
 	

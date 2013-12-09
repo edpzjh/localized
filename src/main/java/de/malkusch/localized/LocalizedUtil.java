@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * Helper to get meta information about entities with {@literal @Localized} fields.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class LocalizedUtil {
 

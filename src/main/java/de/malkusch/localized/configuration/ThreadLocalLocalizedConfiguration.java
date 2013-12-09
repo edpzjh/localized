@@ -12,7 +12,7 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  * Before calling {@link #resolveLocale(Session)}, the thread must have
  * set the {@link Locale} by calling {@link #setLocale(Locale)}.  
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class ThreadLocalLocalizedConfiguration extends LocalizedConfiguration {
 	

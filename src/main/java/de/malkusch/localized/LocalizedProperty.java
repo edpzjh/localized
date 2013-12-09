@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 /**
  * Entity for storing {@literal @Localized} fields of an arbitrary entity.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"type", "instance", "locale", "field"}))

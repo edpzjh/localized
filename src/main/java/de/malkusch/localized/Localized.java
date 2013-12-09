@@ -13,7 +13,7 @@ import de.malkusch.localized.configuration.LocalizedConfiguration;
  * 
  * @see LocalizationInterceptor
  * @see LocalizedConfiguration#resolveLocale(org.hibernate.Session)
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 @Documented
 @Target(ElementType.FIELD)

@@ -17,7 +17,7 @@ import de.malkusch.localized.exception.LocalizedException;
 /**
  * Persists the entity's {@literal @Localized} fields.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class WriteEventListener extends AbstractEventListener implements
 		PostUpdateEventListener, PostInsertEventListener {

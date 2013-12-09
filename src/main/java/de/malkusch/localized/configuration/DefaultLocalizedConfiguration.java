@@ -11,7 +11,7 @@ import org.hibernate.Session;
  * will be used.
  * 
  * @see Locale#getDefault()
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public class DefaultLocalizedConfiguration extends LocalizedConfiguration {
 

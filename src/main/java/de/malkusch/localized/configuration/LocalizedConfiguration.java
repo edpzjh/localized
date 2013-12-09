@@ -13,7 +13,7 @@ import de.malkusch.localized.spi.AbstractEventListener;
  * The configuration will be installed automatically during initialization.
  * 
  * @see AbstractEventListener#setConfiguration(LocalizationConfiguration)
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  */
 public abstract class LocalizedConfiguration {
 	

@@ -17,7 +17,7 @@ import de.malkusch.localized.LocalizedProperty;
 /**
  * Automatic registration of the event listeners.
  * 
- * @author malkusch
+ * @author Markus Malkusch <markus@malkusch.de>
  * @see /META-INF/services/org.hibernate.integrator.spi.Integrator
  */
 public class ListenerIntegrator implements Integrator {
