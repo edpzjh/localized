@@ -61,12 +61,12 @@ Add the following dependency to your pom.xml
 
 # Concept
 I tried my best to stay in the JPA layer, but I failed hard. So for now
-this extension works in Hibernate's Session world. The mechanism is 
-straight forward. A `@Localized` field is backed by many `LocalizedProperty`
+this i18n extension works in Hibernate's Session world. The mechanism is 
+straight forward: A `@Localized` field is backed by many `LocalizedProperty`
 entities (each locale one entity). Hibernate's event system provides the
 infrastructure for replacing and storing transparently the `@Localized` fields.
-You notice that this concept increases the Session communication. Don't use
-`@Localized` when performance is a concern.
+This concept increases the Session communication. Don't use `@Localized` when
+performance is a concern.
 
 # Limitations
 I18n happens around Hibernate's `POST_LOAD`, `POST_UPDATE`, `POST_INSERT` and `POST_DELETE`
@@ -77,4 +77,4 @@ a session you have to synchronize the entities with `Session.flush()` and `Sessi
 # Disclaimer
 I'm currently using this i18n method in a project which is under development.
 There is no practical knowledge about stability, scalabilty or performance.
-Plus I don't have isolated test cases. Use it at your own risk! 
+Use it at your own risk! 

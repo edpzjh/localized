@@ -69,10 +69,6 @@ public class SessionRule implements MethodRule {
 		Configuration configuration = new Configuration();
 		configuration.configure();
 		configuration.addAnnotatedClass(Book.class);
-		
-		// precompile once to get LocalizedProperty registered.
-		configuration.buildSessionFactory();
-		
 		return configuration.buildSessionFactory();
 	}
 

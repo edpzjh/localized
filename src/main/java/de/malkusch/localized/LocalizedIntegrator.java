@@ -1,8 +1,5 @@
 package de.malkusch.localized;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.beanvalidation.DuplicationStrategyImpl;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
@@ -36,8 +33,6 @@ public class LocalizedIntegrator implements Integrator {
 	
 	private static LocaleResolver localeResolver;
 	
-	private static Set<Configuration> configurations = new HashSet<>();
-
 	@Override
 	public void integrate(Configuration configuration,
 			SessionFactoryImplementor sessionFactory,
@@ -58,11 +53,8 @@ public class LocalizedIntegrator implements Integrator {
 		 * 
 		 * 3. If you configure it programmatically (e.g. in a test), use Configuration.addAnnotatedClass()
 		 */
-		if (! configurations.contains(configuration)) {
-			configurations.add(configuration);
-			configuration.addAnnotatedClass(LocalizedProperty.class);
-			
-		}
+		configuration.addAnnotatedClass(LocalizedProperty.class);
+		configuration.buildMappings();
 		
 		String localeResolverClassName = ConfigurationHelper.getString(
 				LOCALE_RESOLVER,
