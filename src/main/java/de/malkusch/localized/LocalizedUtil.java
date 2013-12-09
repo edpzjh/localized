@@ -3,6 +3,12 @@ package de.malkusch.localized;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
+import java.util.Set;
+
+import org.hibernate.Session;
+
+import de.malkusch.localized.dao.LocalizedSessionDAO;
 
 /**
  * Helper to get meta information about entities with {@literal @Localized} fields.
@@ -10,6 +16,17 @@ import java.util.Collection;
  * @author Markus Malkusch <markus@malkusch.de>
  */
 public class LocalizedUtil {
+	
+	/**
+	 * Returns the set of translations for a given entity.
+	 * 
+	 * Even if the translation consists only of NULL values it is
+	 * considered a translation.
+	 */
+	static public Set<Locale> getLocales(Session session, Object entity) {
+		LocalizedSessionDAO dao = new LocalizedSessionDAO(session);
+		return dao.getLocales(entity);
+	}
 
 	/**
 	 * Returns the entity's {@literal @Localized} fields.

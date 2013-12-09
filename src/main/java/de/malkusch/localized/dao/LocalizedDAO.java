@@ -1,4 +1,4 @@
-package de.malkusch.localized;
+package de.malkusch.localized.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,11 +7,13 @@ import java.util.Locale;
 import org.hibernate.Query;
 import org.hibernate.SharedSessionContract;
 
-public class LocalizedDAO {
-	
-	private SharedSessionContract session;
+import de.malkusch.localized.LocalizedProperty;
 
-	public LocalizedDAO(SharedSessionContract session) {
+abstract public class LocalizedDAO<T extends SharedSessionContract> {
+	
+	protected T session;
+
+	public LocalizedDAO(T session) {
 		this.session = session;
 	}
 	

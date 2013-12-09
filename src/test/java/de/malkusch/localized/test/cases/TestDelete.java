@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.LocalizedProperty;
+import de.malkusch.localized.dao.LocalizedSessionDAO;
 import de.malkusch.localized.exception.UnresolvedLocaleException;
 import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
@@ -21,7 +21,7 @@ public class TestDelete {
 
 	private Session session;
 
-	private LocalizedDAO dao;
+	private LocalizedSessionDAO dao;
 
 	private ThreadLocalLocaleResolver localeResolver;
 
