@@ -18,7 +18,7 @@ public class LocalizedUtil {
 	 */
 	static public Collection<Field> getLocalizedFields(Class<?> clazz) {
 		Collection<Field> fields = getAllDeclaredFields(clazz);
-		ArrayList<Field> localizedFields = new ArrayList<Field>();
+		ArrayList<Field> localizedFields = new ArrayList<>();
 		for (Field field : fields) {
 			if (field.getAnnotation(Localized.class) != null) {
 				field.setAccessible(true);
@@ -30,7 +30,7 @@ public class LocalizedUtil {
 	}
 	
 	static private Collection<Field> getAllDeclaredFields(Class<?> clazz) {
-		ArrayList<Field> fields = new ArrayList<Field>();
+		ArrayList<Field> fields = new ArrayList<>();
 		for (Field field : clazz.getDeclaredFields()) {
 			fields.add(field);
 			
