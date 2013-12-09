@@ -9,6 +9,7 @@ import org.junit.runners.model.Statement;
 
 import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
+import de.malkusch.localized.spi.ListenerIntegrator;
 import de.malkusch.localized.test.model.Book;
 
 public class SessionRule implements MethodRule {
@@ -50,6 +51,7 @@ public class SessionRule implements MethodRule {
 				try {
 					dao = new LocalizedDAO(session);
 					localizedConfiguration = new ThreadLocalLocalizedConfiguration();
+					ListenerIntegrator.setConfiguration(localizedConfiguration);
 					
 					statement.evaluate();
 					

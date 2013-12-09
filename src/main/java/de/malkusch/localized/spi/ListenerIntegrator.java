@@ -13,6 +13,8 @@ import org.hibernate.metamodel.source.MetadataImplementor;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
 import de.malkusch.localized.LocalizedProperty;
+import de.malkusch.localized.configuration.DefaultLocalizedConfiguration;
+import de.malkusch.localized.configuration.LocalizedConfiguration;
 
 /**
  * Automatic registration of the event listeners.
@@ -21,6 +23,8 @@ import de.malkusch.localized.LocalizedProperty;
  * @see /META-INF/services/org.hibernate.integrator.spi.Integrator
  */
 public class ListenerIntegrator implements Integrator {
+	
+	private static LocalizedConfiguration configuration = new DefaultLocalizedConfiguration();
 	
 	private static Set<Configuration> configurations = new HashSet<>();
 
@@ -53,10 +57,21 @@ public class ListenerIntegrator implements Integrator {
 		final EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
 		eventListenerRegistry.addDuplicationStrategy(DuplicationStrategyImpl.INSTANCE);
         
-		eventListenerRegistry.appendListeners(EventType.POST_LOAD,   new ReadEventListener(sessionFactory));
-		eventListenerRegistry.appendListeners(EventType.POST_UPDATE, new WriteEventListener(sessionFactory));
-		eventListenerRegistry.appendListeners(EventType.POST_INSERT, new WriteEventListener(sessionFactory));
-		eventListenerRegistry.appendListeners(EventType.POST_DELETE, new DeleteEventListener(sessionFactory));
+		eventListenerRegistry.appendListeners(EventType.POST_LOAD,   new ReadEventListener(this, sessionFactory));
+		eventListenerRegistry.appendListeners(EventType.POST_UPDATE, new WriteEventListener(this, sessionFactory));
+		eventListenerRegistry.appendListeners(EventType.POST_INSERT, new WriteEventListener(this, sessionFactory));
+		eventListenerRegistry.appendListeners(EventType.POST_DELETE, new DeleteEventListener(this, sessionFactory));
+	}
+	
+	/**
+	 * Registers a {@link LocalizedConfiguration}.
+	 */
+	static public void setConfiguration(LocalizedConfiguration configuration) {
+		ListenerIntegrator.configuration = configuration;
+	}
+	
+	public LocalizedConfiguration getConfiguration() {
+		return configuration;
 	}
 
 	@Override

@@ -24,9 +24,8 @@ public class WriteEventListener extends AbstractEventListener implements
 	
 	private static final long serialVersionUID = -5028643125465610L;
 
-	public WriteEventListener(
-			SessionFactoryImplementor sessionFactory) {
-		super(sessionFactory);
+	public WriteEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+		super(integrator, sessionFactory);
 	}
 
 	@Override

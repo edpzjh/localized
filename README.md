@@ -24,9 +24,13 @@ class Book {
 That looks promising. But how does Hibernate know which `Locale` is relevant?
 That's the job of a `LocalizedConfiguration` implementation. Implement one or
 choose one of the existing in the package `de.malkusch.localized.configuration`.
-You only have to instantiate the implementation. Let's take a Spring
-implementation as example:
+Register your implementation statically at `ListenerIntegrator.setConfiguration()`:
+```java
+ListenerIntegrator.setConfiguration(new ThreadLocalLocalizedConfiguration());
+```
 
+If you are in a magic Spring world you should insert `SpringLocalizedConfiguration`
+into the application context:
 ```java
 @Configuration
 public class I18nConfiguration {

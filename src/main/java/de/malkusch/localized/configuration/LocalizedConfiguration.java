@@ -10,21 +10,10 @@ import de.malkusch.localized.spi.AbstractEventListener;
 /**
  * Provides a configuration for the listeners.
  * 
- * The configuration will be installed automatically during initialization.
- * 
  * @see AbstractEventListener#setConfiguration(LocalizationConfiguration)
  * @author Markus Malkusch <markus@malkusch.de>
  */
 public abstract class LocalizedConfiguration {
-	
-	/**
-	 * Registers this configuration statically into the listeners.
-	 * 
-	 * @see LocalizationInterceptor#setConfiguration(LocalizationConfiguration)
-	 */
-	public LocalizedConfiguration() {
-		AbstractEventListener.setConfiguration(this);
-	}
 	
 	/**
 	 * Resolves the locale for the current {@link Session}.

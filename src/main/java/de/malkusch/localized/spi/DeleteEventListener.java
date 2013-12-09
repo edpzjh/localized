@@ -20,8 +20,8 @@ public class DeleteEventListener extends AbstractEventListener implements PostDe
 
 	private static final long serialVersionUID = -4669372532737725066L;
 
-	public DeleteEventListener(SessionFactoryImplementor sessionFactory) {
-		super(sessionFactory);
+	public DeleteEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+		super(integrator, sessionFactory);
 	}
 
 	@Override

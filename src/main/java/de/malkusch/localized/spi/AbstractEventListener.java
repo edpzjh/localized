@@ -13,8 +13,6 @@ import org.hibernate.event.spi.AbstractEvent;
 import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.LocalizedUtil;
-import de.malkusch.localized.configuration.DefaultLocalizedConfiguration;
-import de.malkusch.localized.configuration.LocalizedConfiguration;
 import de.malkusch.localized.exception.LocalizedException;
 
 /**
@@ -27,12 +25,13 @@ import de.malkusch.localized.exception.LocalizedException;
  */
 abstract public class AbstractEventListener {
 	
-	protected static LocalizedConfiguration configuration = new DefaultLocalizedConfiguration();
+	private ListenerIntegrator integrator;
 	
 	protected SessionFactoryImplementor sessionFactory;
 
-	public AbstractEventListener(SessionFactoryImplementor sessionFactory) {
+	public AbstractEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
 		this.sessionFactory = sessionFactory;
+		this.integrator = integrator;
 	}
 	
 	/**
@@ -58,7 +57,7 @@ abstract public class AbstractEventListener {
 		}
 		StatelessSession session = sessionFactory.openStatelessSession(event.getSession().connection());
 		try {
-			Locale locale = configuration.resolveLocale(event.getSession());
+			Locale locale = integrator.getConfiguration().resolveLocale(event.getSession());
 			LocalizedDAO dao = new LocalizedDAO(session);
 			
 			for (Field field : LocalizedUtil.getLocalizedFields(entity.getClass())) {
@@ -81,18 +80,6 @@ abstract public class AbstractEventListener {
 			session.close();
 			
 		}
-	}
-	
-	/**
-	 * Sets the shared configuration.
-	 * 
-	 * You should not call this method. The {@link LocalizedConfiguration} instance
-	 * will do this.
-	 * 
-	 * @see LocalizedConfiguration#LocalizedConfiguration()
-	 */
-	public static void setConfiguration(LocalizedConfiguration configuration) {
-		AbstractEventListener.configuration = configuration;
 	}
 	
 }

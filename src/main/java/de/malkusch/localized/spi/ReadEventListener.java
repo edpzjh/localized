@@ -19,9 +19,8 @@ public class ReadEventListener extends AbstractEventListener implements PostLoad
 
 	private static final long serialVersionUID = -8092744226457117745L;
 	
-	public ReadEventListener(
-			SessionFactoryImplementor sessionFactory) {
-		super(sessionFactory);
+	public ReadEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+		super(integrator, sessionFactory);
 	}
 	
 	@Override
