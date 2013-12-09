@@ -39,6 +39,32 @@ public class TestUtil {
 	}
 	
 	@Test
+	public void testDeleteLocale() {
+		localeResolver.setLocale(Locale.GERMAN);
+		Book book = new Book();
+		book.setAuthor("Irvine Welsh");
+		session.save(book);
+		session.flush();
+		
+		LocalizedUtil.deleteLocale(session, book, Locale.ENGLISH);
+		Collection<Locale> locales = LocalizedUtil.getLocales(session, book);
+		Assert.assertEquals(new HashSet<>(Arrays.asList(Locale.GERMAN)), locales);
+		
+		localeResolver.setLocale(Locale.ENGLISH);
+		book.setTitle("Filth");
+		session.save(book);
+		session.flush();
+		
+		LocalizedUtil.deleteLocale(session, book, Locale.ENGLISH);
+		locales = LocalizedUtil.getLocales(session, book);
+		Assert.assertEquals(new HashSet<>(Arrays.asList(Locale.GERMAN)), locales);
+		
+		LocalizedUtil.deleteLocale(session, book, Locale.GERMAN);
+		locales = LocalizedUtil.getLocales(session, book);
+		Assert.assertTrue(locales.isEmpty());
+	}
+	
+	@Test
 	public void testGetLocales() {
 		localeResolver.setLocale(Locale.GERMAN);
 		Book book = new Book();
@@ -53,7 +79,6 @@ public class TestUtil {
 		book.setTitle("Drecksau");
 		session.save(book);
 		session.flush();
-		session.refresh(book);
 		
 		locales = LocalizedUtil.getLocales(session, book);
 		Assert.assertEquals(new HashSet<>(Arrays.asList(Locale.GERMAN)), locales);
@@ -62,7 +87,6 @@ public class TestUtil {
 		book.setTitle("Filth");
 		session.save(book);
 		session.flush();
-		session.refresh(book);
 		
 		locales = LocalizedUtil.getLocales(session, book);
 		Assert.assertEquals(new HashSet<>(Arrays.asList(Locale.GERMAN, Locale.ENGLISH)), locales);

@@ -8,9 +8,11 @@ import de.malkusch.localized.test.cases.TestDelete;
 import de.malkusch.localized.test.cases.TestLoad;
 import de.malkusch.localized.test.cases.TestInsert;
 import de.malkusch.localized.test.cases.TestUpdate;
+import de.malkusch.localized.test.cases.TestUtil;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestLoad.class, TestInsert.class, TestUpdate.class, TestDelete.class })
+@SuiteClasses({ TestLoad.class, TestInsert.class, TestUpdate.class,
+		TestDelete.class, TestUtil.class })
 public class TestSuite {
 
 }

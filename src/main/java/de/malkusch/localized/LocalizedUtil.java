@@ -22,10 +22,20 @@ public class LocalizedUtil {
 	 * 
 	 * Even if the translation consists only of NULL values it is
 	 * considered a translation.
+	 * 
+	 * @see #deleteLocale(Session, Object, Locale)
 	 */
 	static public Set<Locale> getLocales(Session session, Object entity) {
 		LocalizedSessionDAO dao = new LocalizedSessionDAO(session);
 		return dao.getLocales(entity);
+	}
+	
+	/**
+	 * Deletes a translation.
+	 */
+	static public void deleteLocale(Session session, Object entity, Locale locale) {
+		LocalizedSessionDAO dao = new LocalizedSessionDAO(session);
+		dao.deleteLocale(entity, locale);
 	}
 
 	/**
