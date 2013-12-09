@@ -8,6 +8,7 @@ import org.hibernate.event.spi.PostDeleteEvent;
 import org.hibernate.event.spi.PostDeleteEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 
+import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
@@ -20,7 +21,7 @@ public class DeleteEventListener extends AbstractEventListener implements PostDe
 
 	private static final long serialVersionUID = -4669372532737725066L;
 
-	public DeleteEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+	public DeleteEventListener(LocalizedIntegrator integrator, SessionFactoryImplementor sessionFactory) {
 		super(integrator, sessionFactory);
 	}
 

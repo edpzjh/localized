@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
+import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
 import de.malkusch.localized.test.rule.SessionRule;
 
@@ -16,7 +16,7 @@ public class TestLoad {
 	
 	private Session session;
 	
-	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	private ThreadLocalLocaleResolver localeResolver;
 	
 	@Rule
 	public final SessionRule sessionRule = new SessionRule();
@@ -28,7 +28,7 @@ public class TestLoad {
 	
 	@Before
 	public void localizedConfiguration() {
-		localizedConfiguration = sessionRule.getLocalizedConfiguration();
+		localeResolver = sessionRule.getLocaleResolver();
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class TestLoad {
 	 */
 	@Test
 	public void testNull() {
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver.setLocale(Locale.GERMAN);
 		
 		Book book = new Book();
 		book.setAuthor("Irvine Welsh");
@@ -46,7 +46,7 @@ public class TestLoad {
 		session.refresh(book);
 		Assert.assertNull(book.getTitle());
 		
-		localizedConfiguration.setLocale(Locale.ENGLISH);
+		localeResolver.setLocale(Locale.ENGLISH);
 		session.refresh(book);
 		Assert.assertNull(book.getTitle());
 	}
@@ -56,7 +56,7 @@ public class TestLoad {
 	 */
 	@Test
 	public void testOneTranslation() {
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver.setLocale(Locale.GERMAN);
 		
 		Book book = new Book();
 		book.setAuthor("Irvine Welsh");
@@ -67,11 +67,11 @@ public class TestLoad {
 		session.refresh(book);
 		Assert.assertEquals("Drecksau", book.getTitle());
 		
-		localizedConfiguration.setLocale(Locale.ENGLISH);
+		localeResolver.setLocale(Locale.ENGLISH);
 		session.refresh(book);
 		Assert.assertNull(book.getTitle());
 		
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver.setLocale(Locale.GERMAN);
 		session.refresh(book);
 		Assert.assertEquals("Drecksau", book.getTitle());
 	}
@@ -81,7 +81,7 @@ public class TestLoad {
 	 */
 	@Test
 	public void testTranslated() {
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver.setLocale(Locale.GERMAN);
 		
 		Book book = new Book();
 		book.setAuthor("Irvine Welsh");
@@ -89,7 +89,7 @@ public class TestLoad {
 		session.save(book);
 		session.flush();
 		
-		localizedConfiguration.setLocale(Locale.ENGLISH);
+		localeResolver.setLocale(Locale.ENGLISH);
 		book.setTitle("Filth");
 		session.save(book);
 		session.flush();
@@ -97,11 +97,11 @@ public class TestLoad {
 		session.refresh(book);
 		Assert.assertEquals("Filth", book.getTitle());
 		
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver.setLocale(Locale.GERMAN);
 		session.refresh(book);
 		Assert.assertEquals("Drecksau", book.getTitle());
 		
-		localizedConfiguration.setLocale(Locale.ENGLISH);
+		localeResolver.setLocale(Locale.ENGLISH);
 		session.refresh(book);
 		Assert.assertEquals("Filth", book.getTitle());
 	}

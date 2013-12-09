@@ -7,9 +7,9 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
+import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedDAO;
-import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
-import de.malkusch.localized.spi.ListenerIntegrator;
+import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
 
 public class SessionRule implements MethodRule {
@@ -20,7 +20,7 @@ public class SessionRule implements MethodRule {
 
 	private LocalizedDAO dao;
 	
-	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	private ThreadLocalLocaleResolver localeResolver;
 	
 	public LocalizedDAO getDao() {
 		return dao;
@@ -34,8 +34,8 @@ public class SessionRule implements MethodRule {
 		return sessionFactory;
 	}
 	
-	public ThreadLocalLocalizedConfiguration getLocalizedConfiguration() {
-		return localizedConfiguration;
+	public ThreadLocalLocaleResolver getLocaleResolver() {
+		return localeResolver;
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class SessionRule implements MethodRule {
 				session = sessionFactory.openSession();
 				try {
 					dao = new LocalizedDAO(session);
-					localizedConfiguration = new ThreadLocalLocalizedConfiguration();
-					ListenerIntegrator.setConfiguration(localizedConfiguration);
+					localeResolver = new ThreadLocalLocaleResolver();
+					LocalizedIntegrator.setLocaleResolver(localeResolver);
 					
 					statement.evaluate();
 					

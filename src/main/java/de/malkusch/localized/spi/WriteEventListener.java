@@ -11,6 +11,7 @@ import org.hibernate.event.spi.PostUpdateEvent;
 import org.hibernate.event.spi.PostUpdateEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 
+import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
@@ -24,7 +25,7 @@ public class WriteEventListener extends AbstractEventListener implements
 	
 	private static final long serialVersionUID = -5028643125465610L;
 
-	public WriteEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+	public WriteEventListener(LocalizedIntegrator integrator, SessionFactoryImplementor sessionFactory) {
 		super(integrator, sessionFactory);
 	}
 

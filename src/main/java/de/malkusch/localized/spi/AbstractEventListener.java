@@ -10,6 +10,7 @@ import org.hibernate.StatelessSession;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.spi.AbstractEvent;
 
+import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.LocalizedUtil;
@@ -25,11 +26,11 @@ import de.malkusch.localized.exception.LocalizedException;
  */
 abstract public class AbstractEventListener {
 	
-	private ListenerIntegrator integrator;
+	private LocalizedIntegrator integrator;
 	
 	protected SessionFactoryImplementor sessionFactory;
 
-	public AbstractEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+	public AbstractEventListener(LocalizedIntegrator integrator, SessionFactoryImplementor sessionFactory) {
 		this.sessionFactory = sessionFactory;
 		this.integrator = integrator;
 	}
@@ -57,7 +58,7 @@ abstract public class AbstractEventListener {
 		}
 		StatelessSession session = sessionFactory.openStatelessSession(event.getSession().connection());
 		try {
-			Locale locale = integrator.getConfiguration().resolveLocale(event.getSession());
+			Locale locale = integrator.getLocaleResolver().resolveLocale(event.getSession());
 			LocalizedDAO dao = new LocalizedDAO(session);
 			
 			for (Field field : LocalizedUtil.getLocalizedFields(entity.getClass())) {

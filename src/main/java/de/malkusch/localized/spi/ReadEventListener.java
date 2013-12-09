@@ -7,6 +7,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.spi.PostLoadEvent;
 import org.hibernate.event.spi.PostLoadEventListener;
 
+import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
@@ -19,7 +20,7 @@ public class ReadEventListener extends AbstractEventListener implements PostLoad
 
 	private static final long serialVersionUID = -8092744226457117745L;
 	
-	public ReadEventListener(ListenerIntegrator integrator, SessionFactoryImplementor sessionFactory) {
+	public ReadEventListener(LocalizedIntegrator integrator, SessionFactoryImplementor sessionFactory) {
 		super(integrator, sessionFactory);
 	}
 	

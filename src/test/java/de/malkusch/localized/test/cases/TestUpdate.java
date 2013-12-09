@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
+import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
 import de.malkusch.localized.test.rule.SessionRule;
 
@@ -22,7 +22,7 @@ public class TestUpdate {
 
 	private Session session;
 
-	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	private ThreadLocalLocaleResolver localeResolver;
 	
 	private Book book;
 	
@@ -45,8 +45,8 @@ public class TestUpdate {
 	@Before
 	public void before() {
 		session = sessionRule.getSession();
-		localizedConfiguration = sessionRule.getLocalizedConfiguration();
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver = sessionRule.getLocaleResolver();
+		localeResolver.setLocale(Locale.GERMAN);
 		
 		book = new Book();
 		book.setAuthor("Irvine Welsh");
@@ -54,7 +54,7 @@ public class TestUpdate {
 		session.save(book);
 		session.flush();
 		
-		localizedConfiguration.setLocale(locale);
+		localeResolver.setLocale(locale);
 	}
 	
 	@Test

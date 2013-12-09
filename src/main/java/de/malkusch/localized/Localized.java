@@ -6,13 +6,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import de.malkusch.localized.configuration.LocalizedConfiguration;
+import de.malkusch.localized.localeResolver.LocaleResolver;
 
 /**
- * Indicates fields which have locale dependent values based on {@link LocalizedConfiguration#resolveLocale(org.hibernate.Session)}.
+ * Indicates fields which have locale dependent values based on {@link LocaleResolver#resolveLocale(org.hibernate.Session)}.
  * 
  * @see LocalizationInterceptor
- * @see LocalizedConfiguration#resolveLocale(org.hibernate.Session)
+ * @see LocaleResolver#resolveLocale(org.hibernate.Session)
  * @author Markus Malkusch <markus@malkusch.de>
  */
 @Documented

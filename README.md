@@ -1,3 +1,4 @@
+# @Localized
 Internationalization (i18n) is so boring. There is not one single best
 practice. And they are all just a pain in the ass when your `String` is
 no more a String but something like a `Map<Locale, String>`. Bye JSR-303
@@ -22,25 +23,21 @@ class Book {
 
 `@Localized` annotates the property `Book.title` as a translatable `String`.
 That looks promising. But how does Hibernate know which `Locale` is relevant?
-That's the job of a `LocalizedConfiguration` implementation. Implement one or
-choose one of the existing in the package `de.malkusch.localized.configuration`.
-Register your implementation statically at `ListenerIntegrator.setConfiguration()`:
-```java
-ListenerIntegrator.setConfiguration(new ThreadLocalLocalizedConfiguration());
-```
 
-If you are in a magic Spring world you should insert `SpringLocalizedConfiguration`
-into the application context:
-```java
-@Configuration
-public class I18nConfiguration {
+## LocaleResolver
+That's the job of a `LocaleResolver` implementation. Implement or choose one
+from the package `de.malkusch.localized.localeResolver`. There are several
+ways of registering the LocaleResolver:
 
-    @Bean public LocalizedConfiguration localizedConfiguration() {
-        return new SpringLocalizedConfiguration();
-    }
-
-}
-```
+*	Specify the fully qualified class name in the hibernate property 
+	*hibernate.listeners.localized.locale_resolver*:
+	```xml
+	<property name="hibernate.listeners.localized.locale_resolver">de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver</property>
+	``` 
+*	Register it programmatically:
+	```java
+	LocalizedIntegrator.setLocaleResolver(new ThreadLocalLocaleResolver());
+	```
 
 # Maven
 You find this package in my maven repository: http://mvn.malkusch.de
@@ -58,22 +55,22 @@ Add the following dependency to your pom.xml
 <dependency>
     <groupId>de.malkusch</groupId>
     <artifactId>localized</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
 # Concept
 I tried my best to stay in the JPA layer, but I failed hard. So for now
 this extension works in Hibernate's Session world. The mechanism is 
-straight forward. Each `@Localized` field is backed by a `LocalizedProperty`
-entity. Hibernate's event system provides the infrastructure for replacing and
-storing transparently the `@Localized` fields. You notice that this concept
-increases the Session communication. Don't use `@Localized` when performance
-is a concern.
+straight forward. A `@Localized` field is backed by many `LocalizedProperty`
+entities (each locale one entity). Hibernate's event system provides the
+infrastructure for replacing and storing transparently the `@Localized` fields.
+You notice that this concept increases the Session communication. Don't use
+`@Localized` when performance is a concern.
 
 # Limitations
 I18n happens around Hibernate's `POST_LOAD`, `POST_UPDATE`, `POST_INSERT` and `POST_DELETE`
-events. In between happens nothing. I.e. you have to fix the locale at Session begin
+events. In between nothing happens. I.e. you have to fix the locale at Session begin
 (before the first `POST_LOAD` event on a localized entity). If you change the locale during
 a session you have to synchronize the entities with `Session.flush()` and `Session.refresh(Object)`.
 

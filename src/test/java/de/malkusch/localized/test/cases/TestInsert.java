@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
+import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
 import de.malkusch.localized.test.rule.SessionRule;
 
@@ -16,7 +16,7 @@ public class TestInsert {
 
 	private Session session;
 
-	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	private ThreadLocalLocaleResolver localeResolver;
 
 	@Rule
 	public final SessionRule sessionRule = new SessionRule();
@@ -28,8 +28,8 @@ public class TestInsert {
 
 	@Before
 	public void localizedConfiguration() {
-		localizedConfiguration = sessionRule.getLocalizedConfiguration();
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver = sessionRule.getLocaleResolver();
+		localeResolver.setLocale(Locale.GERMAN);
 	}
 	
 	@Test

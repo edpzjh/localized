@@ -1,4 +1,4 @@
-package de.malkusch.localized.spi;
+package de.malkusch.localized;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,12 +9,16 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.service.spi.EventListenerRegistry;
 import org.hibernate.event.spi.EventType;
 import org.hibernate.integrator.spi.Integrator;
+import org.hibernate.internal.util.config.ConfigurationException;
+import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.metamodel.source.MetadataImplementor;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
-import de.malkusch.localized.LocalizedProperty;
-import de.malkusch.localized.configuration.DefaultLocalizedConfiguration;
-import de.malkusch.localized.configuration.LocalizedConfiguration;
+import de.malkusch.localized.localeResolver.DefaultLocaleResolver;
+import de.malkusch.localized.localeResolver.LocaleResolver;
+import de.malkusch.localized.spi.DeleteEventListener;
+import de.malkusch.localized.spi.ReadEventListener;
+import de.malkusch.localized.spi.WriteEventListener;
 
 /**
  * Automatic registration of the event listeners.
@@ -22,9 +26,15 @@ import de.malkusch.localized.configuration.LocalizedConfiguration;
  * @author Markus Malkusch <markus@malkusch.de>
  * @see /META-INF/services/org.hibernate.integrator.spi.Integrator
  */
-public class ListenerIntegrator implements Integrator {
+public class LocalizedIntegrator implements Integrator {
 	
-	private static LocalizedConfiguration configuration = new DefaultLocalizedConfiguration();
+	/**
+	 * The name of a configuration setting that registers a locale resolver.
+	 * Default is de.malkusch.localized.localeResolver.DefaultLocaleResolver
+	 */
+	public static final String LOCALE_RESOLVER = "hibernate.listeners.localized.locale_resolver";
+	
+	private static LocaleResolver localeResolver;
 	
 	private static Set<Configuration> configurations = new HashSet<>();
 
@@ -54,6 +64,20 @@ public class ListenerIntegrator implements Integrator {
 			
 		}
 		
+		String localeResolverClassName = ConfigurationHelper.getString(
+				LOCALE_RESOLVER,
+				configuration.getProperties(),
+				DefaultLocaleResolver.class.getCanonicalName());
+		try {
+			setLocaleResolver((LocaleResolver) Class.forName(localeResolverClassName).newInstance());
+			
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			throw new ConfigurationException(String.format(
+					"could not instantiate LocaleResolver %s from hibernate option %s",
+					localeResolverClassName, LOCALE_RESOLVER), e);
+			
+		}
+		
 		final EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
 		eventListenerRegistry.addDuplicationStrategy(DuplicationStrategyImpl.INSTANCE);
         
@@ -64,14 +88,16 @@ public class ListenerIntegrator implements Integrator {
 	}
 	
 	/**
-	 * Registers a {@link LocalizedConfiguration}.
+	 * Registers a {@link LocaleResolver}.
+	 * 
+	 * You can also configure this by the hibernate property {@link #LOCALE_RESOLVER}.
 	 */
-	static public void setConfiguration(LocalizedConfiguration configuration) {
-		ListenerIntegrator.configuration = configuration;
+	static public void setLocaleResolver(LocaleResolver localeResolver) {
+		LocalizedIntegrator.localeResolver = localeResolver;
 	}
 	
-	public LocalizedConfiguration getConfiguration() {
-		return configuration;
+	public LocaleResolver getLocaleResolver() {
+		return localeResolver;
 	}
 
 	@Override

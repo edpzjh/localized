@@ -1,4 +1,4 @@
-package de.malkusch.localized.configuration;
+package de.malkusch.localized.localeResolver;
 
 import java.util.Locale;
 
@@ -14,20 +14,20 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */
-public class ThreadLocalLocalizedConfiguration extends LocalizedConfiguration {
+public class ThreadLocalLocaleResolver implements LocaleResolver {
 	
-	private ThreadLocal<Locale> localeHolder = new ThreadLocal<Locale>();
+	private ThreadLocal<Locale> locales = new ThreadLocal<Locale>();
 	
 	/**
 	 * Sets the {@link Locale} for this thread.
 	 */
 	public void setLocale(Locale locale) {
-		localeHolder.set(locale);
+		locales.set(locale);
 	}
 
 	@Override
 	public Locale resolveLocale(Session session) throws UnresolvedLocaleException {
-		Locale locale = localeHolder.get();
+		Locale locale = locales.get();
 		if (locale == null) {
 			throw new UnresolvedLocaleException("The current thread didn't call setLocale() before.");
 			

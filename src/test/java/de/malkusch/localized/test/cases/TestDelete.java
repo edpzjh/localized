@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.LocalizedProperty;
-import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
 import de.malkusch.localized.exception.UnresolvedLocaleException;
+import de.malkusch.localized.localeResolver.ThreadLocalLocaleResolver;
 import de.malkusch.localized.test.model.Book;
 import de.malkusch.localized.test.rule.SessionRule;
 
@@ -23,7 +23,7 @@ public class TestDelete {
 
 	private LocalizedDAO dao;
 
-	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	private ThreadLocalLocaleResolver localeResolver;
 
 	@Rule
 	public final SessionRule sessionRule = new SessionRule();
@@ -34,8 +34,8 @@ public class TestDelete {
 
 		dao = sessionRule.getDao();
 
-		localizedConfiguration = sessionRule.getLocalizedConfiguration();
-		localizedConfiguration.setLocale(Locale.GERMAN);
+		localeResolver = sessionRule.getLocaleResolver();
+		localeResolver.setLocale(Locale.GERMAN);
 
 		book = new Book();
 		book.setAuthor("Irvine Welsh");
@@ -50,7 +50,7 @@ public class TestDelete {
 		session.flush();
 
 		LocalizedProperty property = dao.find(book.getClass(), "title",
-				localizedConfiguration.resolveLocale(session), book.getId());
+				localeResolver.resolveLocale(session), book.getId());
 		Assert.assertNull(property);
 	}
 

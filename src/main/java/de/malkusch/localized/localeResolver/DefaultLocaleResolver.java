@@ -1,4 +1,4 @@
-package de.malkusch.localized.configuration;
+package de.malkusch.localized.localeResolver;
 
 import java.util.Locale;
 
@@ -7,13 +7,12 @@ import org.hibernate.Session;
 /**
  * Returns the VM's default locale.
  * 
- * If no other {@LocalizedConfiguration} will be instantiated this object
- * will be used.
+ * This is the default locale resolver.
  * 
  * @see Locale#getDefault()
  * @author Markus Malkusch <markus@malkusch.de>
  */
-public class DefaultLocalizedConfiguration extends LocalizedConfiguration {
+public class DefaultLocaleResolver implements LocaleResolver {
 
 	/**
 	 * Returns the VM's default locale.
