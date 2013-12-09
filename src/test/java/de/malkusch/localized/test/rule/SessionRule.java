@@ -7,6 +7,7 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
+import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
 import de.malkusch.localized.test.model.Book;
 
@@ -16,7 +17,13 @@ public class SessionRule implements MethodRule {
 
 	private SessionFactory sessionFactory;
 
+	private LocalizedDAO dao;
+	
 	private ThreadLocalLocalizedConfiguration localizedConfiguration;
+	
+	public LocalizedDAO getDao() {
+		return dao;
+	}
 	
 	public Session getSession() {
 		return session;
@@ -40,6 +47,7 @@ public class SessionRule implements MethodRule {
 			public void evaluate() throws Throwable {
 				sessionFactory = createSessionFactory();
 				session = sessionFactory.openSession();
+				dao = new LocalizedDAO(session);
 				try {
 					localizedConfiguration = new ThreadLocalLocalizedConfiguration();
 					statement.evaluate();

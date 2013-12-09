@@ -12,7 +12,7 @@ import de.malkusch.localized.configuration.ThreadLocalLocalizedConfiguration;
 import de.malkusch.localized.test.model.Book;
 import de.malkusch.localized.test.rule.SessionRule;
 
-public class LoadTest {
+public class TestLoad {
 	
 	private Session session;
 	

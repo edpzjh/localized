@@ -3,15 +3,14 @@ package de.malkusch.localized.spi;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.util.List;
 import java.util.Locale;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.spi.AbstractEvent;
 
+import de.malkusch.localized.LocalizedDAO;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.LocalizedUtil;
 import de.malkusch.localized.configuration.DefaultLocalizedConfiguration;
@@ -60,37 +59,17 @@ abstract public class AbstractEventListener {
 		StatelessSession session = sessionFactory.openStatelessSession(event.getSession().connection());
 		try {
 			Locale locale = configuration.resolveLocale(event.getSession());
+			LocalizedDAO dao = new LocalizedDAO(session);
 			
 			for (Field field : LocalizedUtil.getLocalizedFields(entity.getClass())) {
-				Query query = session
-						.createQuery("FROM LocalizedProperty WHERE instance = :instance"
-								+ " AND locale = :locale"
-								+ " AND field = :field" + " AND type = :type");
-				query.setParameter("instance", id.toString());
-				query.setParameter("locale", locale);
-				query.setParameter("field", field.getName());
-				query.setParameter("type", entity.getClass());
-
-				List<?> results = query.list();
-				LocalizedProperty property;
-				switch (results.size()) {
-
-				case 0:
+				LocalizedProperty property = dao.find(entity.getClass(), field.getName(), locale, id);
+				if (property == null) {
 					property = new LocalizedProperty();
 					property.setField(field.getName());
 					property.setLocale(locale);
 					property.setType(entity.getClass());
 					property.setInstance(id.toString());
-					break;
-
-				case 1:
-					property = (LocalizedProperty) results.get(0);
-					break;
-
-				default:
-					throw new IllegalStateException(
-							"This query should not return more than 1 result.");
-
+					
 				}
 				handleField(session, field, entity, property);
 				
