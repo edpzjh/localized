@@ -42,7 +42,7 @@ public class ListenerIntegrator implements Integrator {
 		 * 2. If you use persistence.xml add <mapping-file>META-INF/localized.xml</mapping-file>
 		 * to your persistence-unit.
 		 * 
-		 * 3. If you configure it programmaticaly (e.g. in a test), use Configuration.addAnnotatedClass()
+		 * 3. If you configure it programmatically (e.g. in a test), use Configuration.addAnnotatedClass()
 		 */
 		if (! configurations.contains(configuration)) {
 			configurations.add(configuration);

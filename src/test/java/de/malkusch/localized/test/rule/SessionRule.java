@@ -47,9 +47,10 @@ public class SessionRule implements MethodRule {
 			public void evaluate() throws Throwable {
 				sessionFactory = createSessionFactory();
 				session = sessionFactory.openSession();
-				dao = new LocalizedDAO(session);
 				try {
+					dao = new LocalizedDAO(session);
 					localizedConfiguration = new ThreadLocalLocalizedConfiguration();
+					
 					statement.evaluate();
 					
 				} finally {
@@ -66,9 +67,8 @@ public class SessionRule implements MethodRule {
 		Configuration configuration = new Configuration();
 		configuration.configure();
 		configuration.addAnnotatedClass(Book.class);
-		// configuration.addAnnotatedClass(LocalizedProperty.class);
 		
-		// compile once to get LocalizedProperty registered.
+		// precompile once to get LocalizedProperty registered.
 		configuration.buildSessionFactory();
 		
 		return configuration.buildSessionFactory();
