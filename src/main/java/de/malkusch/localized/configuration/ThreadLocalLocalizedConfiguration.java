@@ -16,7 +16,7 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  */
 public class ThreadLocalLocalizedConfiguration extends LocalizedConfiguration {
 	
-	private ThreadLocal<Locale> localeHolder;
+	private ThreadLocal<Locale> localeHolder = new ThreadLocal<Locale>();
 	
 	/**
 	 * Sets the {@link Locale} for this thread.
