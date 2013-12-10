@@ -3,14 +3,27 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.malkusch</groupId>
 	<artifactId>localized</artifactId>
-	<version>0.2.1</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<properties>
 		<java-version>1.7</java-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 	<packaging>jar</packaging>
+	<name>Localized</name>
+	<description>
+		Localized is an i18n extension for Hibernate. The @Localized
+		annotation provides transparent i18n support on
+		@Entity properties.
+	</description>
 	<url>https://github.com/malkusch/localized</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<scm>
 		<connection>scm:git:git://github.com/malkusch/localized.git</connection>
 		<url>https://github.com/malkusch/localized</url>
