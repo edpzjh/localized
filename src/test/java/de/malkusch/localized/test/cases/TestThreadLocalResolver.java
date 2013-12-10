@@ -23,7 +23,7 @@ public class TestThreadLocalResolver {
 	}
 	
 	@Test
-	public void testsetLocale() throws UnresolvedLocaleException {
+	public void testChangeLocale() throws UnresolvedLocaleException {
 		ThreadLocalLocaleResolver resolver = new ThreadLocalLocaleResolver();
 		
 		resolver.setLocale(Locale.GERMAN);
