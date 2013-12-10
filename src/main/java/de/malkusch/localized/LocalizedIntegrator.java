@@ -61,19 +61,25 @@ public class LocalizedIntegrator implements Integrator {
 		configuration.addAnnotatedClass(LocalizedProperty.class);
 		configuration.buildMappings();
 		
-		String localeResolverClassName = ConfigurationHelper.getString(
-				LOCALE_RESOLVER,
-				configuration.getProperties(),
-				DefaultLocaleResolver.class.getCanonicalName());
-		try {
-			setLocaleResolver((LocaleResolver) Class.forName(localeResolverClassName).newInstance());
-			
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			throw new ConfigurationException(String.format(
-					"could not instantiate LocaleResolver %s from hibernate option %s",
-					localeResolverClassName, LOCALE_RESOLVER), e);
+		
+		String localeResolverClassName = ConfigurationHelper.getString(LOCALE_RESOLVER, configuration.getProperties());
+		if (localeResolverClassName != null) {
+			try {
+				setLocaleResolver((LocaleResolver) Class.forName(localeResolverClassName).newInstance());
+				
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				throw new ConfigurationException(String.format(
+						"could not instantiate LocaleResolver %s from hibernate option %s",
+						localeResolverClassName, LOCALE_RESOLVER), e);
+				
+			}
+		} else {
+			DefaultLocaleResolver localeResolver = new DefaultLocaleResolver();
+			localeResolver.setWarnOnce(true);
+			setLocaleResolver(localeResolver);
 			
 		}
+		
 		
 		final EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
 		eventListenerRegistry.addDuplicationStrategy(DuplicationStrategyImpl.INSTANCE);
