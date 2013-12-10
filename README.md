@@ -40,22 +40,12 @@ LocalizedIntegrator.setLocaleResolver(new ThreadLocalLocaleResolver());
 ```
 
 # Maven
-You find this package in my maven repository: http://mvn.malkusch.de
-```xml
-<repositories>
-    <repository>
-        <id>malkusch.de</id>
-        <url>http://mvn.malkusch.de/</url>
-    </repository>
-</repositories>
-```
-
-Add the following dependency to your pom.xml
+You find this package in Maven Central repository:
 ```xml
 <dependency>
-    <groupId>de.malkusch</groupId>
+    <groupId>de.malkusch.localized</groupId>
     <artifactId>localized</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.8</version>
 </dependency>
 ```
 
