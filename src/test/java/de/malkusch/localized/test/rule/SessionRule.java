@@ -22,6 +22,16 @@ public class SessionRule implements MethodRule {
 	
 	private ThreadLocalLocaleResolver localeResolver;
 	
+	private boolean initResolver;
+	
+	public SessionRule() {
+		this(true);
+	}
+	
+	public SessionRule(boolean initResolver) {
+		this.initResolver = initResolver;
+	}
+	
 	public LocalizedSessionDAO getDao() {
 		return dao;
 	}
@@ -51,7 +61,10 @@ public class SessionRule implements MethodRule {
 				try {
 					dao = new LocalizedSessionDAO(session);
 					localeResolver = new ThreadLocalLocaleResolver();
-					LocalizedIntegrator.setLocaleResolver(localeResolver);
+					if (initResolver) {
+						LocalizedIntegrator.setLocaleResolver(localeResolver);
+						
+					}
 					
 					statement.evaluate();
 					

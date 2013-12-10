@@ -17,7 +17,7 @@ public class TestDefaultResolver {
 	private Session session;
 	
 	@Rule
-	public final SessionRule sessionRule = new SessionRule();
+	public final SessionRule sessionRule = new SessionRule(false);
 
 	@Before
 	public void session() {
@@ -38,8 +38,6 @@ public class TestDefaultResolver {
 	
 	@Test
 	public void testDefaultWarning() {
-		//TODO initiate LocalizedInitiator with default resolver
-		
 		Book book = new Book();
 		book.setAuthor("Irvine Welsh");
 		session.save(book);
