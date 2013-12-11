@@ -17,6 +17,13 @@
 		annotation provides transparent i18n support on
 		@Entity properties.
 	</description>
+	
+	<url>https://github.com/malkusch/${project.artifactId}</url>
+	<scm>
+		<connection>scm:git:git://github.com/malkusch/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:git@github.com:malkusch/${project.artifactId}.git</developerConnection>
+		<url>https://github.com/malkusch/${project.artifactId}</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
