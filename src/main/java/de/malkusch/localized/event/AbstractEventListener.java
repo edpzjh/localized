@@ -10,6 +10,7 @@ import org.hibernate.StatelessSession;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.spi.AbstractEvent;
 
+import de.malkusch.localized.Localized;
 import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.LocalizedUtil;
@@ -19,7 +20,7 @@ import de.malkusch.localized.exception.LocalizedException;
 /**
  * Base class for event handling.
  * 
- * This class dispatches the event to the {@literal @Localized} fields of the
+ * This class dispatches the event to the @{@link Localized} fields of the
  * event's entity.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
@@ -36,7 +37,7 @@ abstract public class AbstractEventListener {
 	}
 	
 	/**
-	 * Handles the event for each {@literal @Localized} field.
+	 * Handles the event for each @{@link Localized} field.
 	 * 
 	 * This method has a separate {@link Session} as Hibernate's event system
 	 * seems to break when using the same Session. The session runs on the same
@@ -45,7 +46,7 @@ abstract public class AbstractEventListener {
 	abstract protected void handleField(StatelessSession session, Field field, Object entity, LocalizedProperty property) throws LocalizedException;
 	
 	/**
-	 * Dispatches an event for each {@literal @Localized} field.
+	 * Dispatches an event for each @{@link Localized} field.
 	 * 
 	 * The Hibernate event callback should be forwarded to this method.
 	 * 

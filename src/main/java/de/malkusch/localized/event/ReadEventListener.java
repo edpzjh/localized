@@ -7,12 +7,13 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.spi.PostLoadEvent;
 import org.hibernate.event.spi.PostLoadEventListener;
 
+import de.malkusch.localized.Localized;
 import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
 /**
- * Replaces the entity's {@literal @Localized} fields after loading.
+ * Replaces the entity's @{@link Localized} fields after loading.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */

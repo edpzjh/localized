@@ -93,7 +93,7 @@ public class LocalizedIntegrator implements Integrator {
 	/**
 	 * Registers a {@link LocaleResolver}.
 	 * 
-	 * You can also configure this by the hibernate property {@link #LOCALE_RESOLVER}.
+	 * You can also configure this by the hibernate property {@value #LOCALE_RESOLVER}.
 	 */
 	static public void setLocaleResolver(LocaleResolver localeResolver) {
 		LocalizedIntegrator.localeResolver = localeResolver;

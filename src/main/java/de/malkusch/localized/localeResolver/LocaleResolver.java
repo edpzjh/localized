@@ -11,7 +11,7 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  * Resolves the locale based on the {@link Session}.
  * 
  * Register a resolver at {@link LocalizedIntegrator#setLocaleResolver(LocaleResolver)}
- * or by Hibernate's property {@link LocalizedIntegrator#LOCALE_RESOLVER}.
+ * or by Hibernate's property {@value LocalizedIntegrator#LOCALE_RESOLVER}.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */

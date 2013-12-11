@@ -8,12 +8,13 @@ import org.hibernate.event.spi.PostDeleteEvent;
 import org.hibernate.event.spi.PostDeleteEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 
+import de.malkusch.localized.Localized;
 import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
 /**
- * Remove the entity's {@literal @Localized} fields.
+ * Remove the entity's @{@link Localized} fields.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /**
- * Entity for storing {@literal @Localized} fields of an arbitrary entity.
+ * Entity for storing @{@link Localized} fields of an arbitrary entity.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */

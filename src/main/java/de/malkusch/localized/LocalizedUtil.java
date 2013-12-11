@@ -11,7 +11,7 @@ import org.hibernate.Session;
 import de.malkusch.localized.dao.LocalizedSessionDAO;
 
 /**
- * Helper to get meta information about entities with {@literal @Localized} fields.
+ * Helper to get meta information about entities with @{@link Localized} fields.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */
@@ -39,7 +39,7 @@ public class LocalizedUtil {
 	}
 
 	/**
-	 * Returns the entity's {@literal @Localized} fields.
+	 * Returns the entity's @{@link Localized} fields.
 	 * 
 	 * These fields are made accessible.
 	 */

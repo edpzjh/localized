@@ -11,7 +11,7 @@ import de.malkusch.localized.localeResolver.LocaleResolver;
 /**
  * Indicates fields which have locale dependent values based on {@link LocaleResolver#resolveLocale(org.hibernate.Session)}.
  * 
- * @see LocalizationInterceptor
+ * @see LocalizedIntegrator
  * @see LocaleResolver#resolveLocale(org.hibernate.Session)
  * @author Markus Malkusch <markus@malkusch.de>
  */

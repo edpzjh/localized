@@ -11,12 +11,13 @@ import org.hibernate.event.spi.PostUpdateEvent;
 import org.hibernate.event.spi.PostUpdateEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 
+import de.malkusch.localized.Localized;
 import de.malkusch.localized.LocalizedIntegrator;
 import de.malkusch.localized.LocalizedProperty;
 import de.malkusch.localized.exception.LocalizedException;
 
 /**
- * Persists the entity's {@literal @Localized} fields.
+ * Persists the entity's @{@link Localized} fields.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
  */
