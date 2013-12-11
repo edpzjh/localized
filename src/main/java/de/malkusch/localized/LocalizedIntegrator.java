@@ -26,7 +26,6 @@ import de.malkusch.localized.localeResolver.LocaleResolver;
  * service with {@link ServiceLoader}.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
- * @see /META-INF/services/org.hibernate.integrator.spi.Integrator
  */
 public class LocalizedIntegrator implements Integrator {
 	
