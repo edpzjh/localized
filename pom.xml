@@ -1,44 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.malkusch.localized</groupId>
 	<artifactId>localized</artifactId>
 	<version>0.2.9-SNAPSHOT</version>
-	<properties>
-		<java-version>1.7</java-version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>de.malkusch.parent</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
 	<name>Localized</name>
 	<description>
 		Localized is an i18n extension for Hibernate. The @Localized
 		annotation provides transparent i18n support on
 		@Entity properties.
 	</description>
-	<url>https://github.com/malkusch/localized</url>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<scm>
-		<connection>scm:git:git://github.com/malkusch/localized.git</connection>
-		<developerConnection>scm:git:git@github.com:malkusch/localized.git</developerConnection>
-		<url>https://github.com/malkusch/localized</url>
-	</scm>
-	<developers>
-		<developer>
-			<id>malkusch</id>
-			<name>Markus Malkusch</name>
-			<email>markus@malkusch.de</email>
-		</developer>
-	</developers>
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -77,31 +57,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.5.1</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>sonatype-nexus-staging</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
