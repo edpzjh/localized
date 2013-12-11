@@ -20,7 +20,6 @@ public interface LocaleResolver {
 	
 	/**
 	 * Resolves the locale for the current {@link Session}.
-	 * @throws UnresolvedLocaleException 
 	 */
 	public Locale resolveLocale(Session session) throws UnresolvedLocaleException;
 	
