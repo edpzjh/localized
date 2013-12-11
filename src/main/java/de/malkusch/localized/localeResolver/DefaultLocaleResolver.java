@@ -14,6 +14,7 @@ import de.malkusch.localized.LocalizedIntegrator;
  * 
  * @see Locale#getDefault()
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class DefaultLocaleResolver implements LocaleResolver {
 

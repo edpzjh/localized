@@ -26,6 +26,7 @@ import de.malkusch.localized.localeResolver.LocaleResolver;
  * service with {@link ServiceLoader}.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class LocalizedIntegrator implements Integrator {
 	

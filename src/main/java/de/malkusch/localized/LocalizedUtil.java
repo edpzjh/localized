@@ -14,6 +14,7 @@ import de.malkusch.localized.dao.LocalizedSessionDAO;
  * Helper to get meta information about entities with @{@link Localized} fields.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class LocalizedUtil {
 	

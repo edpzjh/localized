@@ -24,6 +24,7 @@ import de.malkusch.localized.exception.LocalizedException;
  * event's entity.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 abstract public class AbstractEventListener {
 	

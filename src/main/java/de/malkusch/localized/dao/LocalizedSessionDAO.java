@@ -9,7 +9,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
+ * DAO backed by a {@link Session}
+ * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class LocalizedSessionDAO extends LocalizedDAO<Session> {
 

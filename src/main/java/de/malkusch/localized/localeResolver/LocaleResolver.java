@@ -14,6 +14,7 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  * or by Hibernate's property {@link LocalizedIntegrator#LOCALE_RESOLVER}.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public interface LocaleResolver {
 	

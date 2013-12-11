@@ -9,6 +9,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
  * Resolve locale for a Spring/JPA environment.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class SpringLocaleResolver implements LocaleResolver {
 	

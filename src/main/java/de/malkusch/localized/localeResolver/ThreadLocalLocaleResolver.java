@@ -13,6 +13,7 @@ import de.malkusch.localized.exception.UnresolvedLocaleException;
  * set the {@link Locale} by calling {@link #setLocale(Locale)}.  
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class ThreadLocalLocaleResolver implements LocaleResolver {
 	

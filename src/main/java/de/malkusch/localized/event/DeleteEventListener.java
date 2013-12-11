@@ -17,6 +17,7 @@ import de.malkusch.localized.exception.LocalizedException;
  * Remove the entity's @{@link Localized} fields.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class DeleteEventListener extends AbstractEventListener implements PostDeleteEventListener {
 

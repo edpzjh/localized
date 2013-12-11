@@ -16,6 +16,7 @@ import de.malkusch.localized.exception.LocalizedException;
  * Replaces the entity's @{@link Localized} fields after loading.
  * 
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 public class ReadEventListener extends AbstractEventListener implements PostLoadEventListener {
 

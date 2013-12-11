@@ -14,6 +14,7 @@ import de.malkusch.localized.localeResolver.LocaleResolver;
  * @see LocalizedIntegrator
  * @see LocaleResolver#resolveLocale(org.hibernate.Session)
  * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
  */
 @Documented
 @Target(ElementType.FIELD)

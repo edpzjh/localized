@@ -9,6 +9,12 @@ import org.hibernate.SharedSessionContract;
 
 import de.malkusch.localized.LocalizedProperty;
 
+/**
+ * Abstract DAO.
+ * 
+ * @author Markus Malkusch <markus@malkusch.de>
+ * @since 0.2.8
+ */
 abstract public class LocalizedDAO<T extends SharedSessionContract> {
 	
 	protected T session;
