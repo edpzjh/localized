@@ -1,0 +1,5 @@
+de.malkusch.localized
+de.malkusch.localized.dao
+de.malkusch.localized.event
+de.malkusch.localized.exception
+de.malkusch.localized.localeResolver
