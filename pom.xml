@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>de.malkusch.parent</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>1.4-SNAPSHOT</version>
+		<version>1.4</version>
 	</parent>
 
 	<name>Localized</name>
