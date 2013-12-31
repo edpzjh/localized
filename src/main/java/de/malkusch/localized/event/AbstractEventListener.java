@@ -26,8 +26,10 @@ import de.malkusch.localized.exception.LocalizedException;
  * @author Markus Malkusch <markus@malkusch.de>
  * @since 0.2.8
  */
-abstract public class AbstractEventListener {
+abstract public class AbstractEventListener implements Serializable {
 	
+	private static final long serialVersionUID = 9030349282598174123L;
+
 	private LocalizedIntegrator integrator;
 	
 	protected SessionFactoryImplementor sessionFactory;
